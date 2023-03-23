@@ -15,4 +15,21 @@ class Producto{
         this.nombre=nombre;
         this.precio=precio;
     }
+
+    mostrar(){
+        document.write("Código: "+this.codigo+`<br>`);
+        document.write("Nombre: "+this.nombre+`<br>`);
+        document.write("Precio: "+this.precio+`<br>`);
+    }
 }
+
+const producto1 = new Producto(12235,"Notebook",150000);
+const producto2 = new Producto(12236,"Celular",50000);
+const producto3 = new Producto(12237,"Ipad",95000);
+
+document.write("<h5>Producto 1</h5>");
+producto1.mostrar();
+document.write("<h5>Producto 2</h5>");
+producto2.mostrar();
+document.write("<h5>Producto 3</h5>");
+producto3.mostrar();
