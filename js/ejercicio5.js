@@ -14,6 +14,7 @@ esMayorDeEdad: indica si es mayor de edad, devuelve un mensaje indicando que
 la persona es mayor de edad.
 
 mostrarDatos: devuelve toda la información del objeto.
+
 generaDNI(): genera un número aleatorio de 8 cifras.
 
  */
@@ -29,7 +30,7 @@ class Persona{
         this.anioNacimiento=anioNacimiento;
     }
 
-    mostrarPersona(){
+    mostrarDatos(){
         document.write("Nombre: "+this.nombre+`<br>`);
         document.write("Edad: "+this.edad+` años<br>`);
         document.write("DNI: "+this.dni+`<br>`);
@@ -84,6 +85,7 @@ class Persona{
 
 const persona1 = new Persona("Juan",28,21121218,"M",70,189,1994);
 
-persona1.mostrarPersona();
 persona1.mostrarGeneracion();
 persona1.esMayorDeEdad();
+persona1.mostrarDatos();
+generarDNI();
