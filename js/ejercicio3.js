@@ -9,8 +9,22 @@ mostrar sus propiedades, calcular el perímetro y el área
 
 class Rectangulo{
     constructor(alto,ancho){
-        this.alto = alto;
-        this.ancho = ancho;
+        this._alto = alto;
+        this._ancho = ancho;
+    }
+
+    get alto(){
+        return this._alto;
+    }
+    get ancho(){
+        return this._ancho;
+    }
+
+    set alto(nuevoAlto){
+        this._alto=nuevoAlto;
+    }
+    set ancho(nuevoAncho){
+        this._ancho=nuevoAncho;
     }
 
     mostrar(){
