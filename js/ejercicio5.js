@@ -70,9 +70,9 @@ class Persona{
     esMayorDeEdad(anioNacimiento){
         let anioActual=2023;
         if((anioActual-this.anioNacimiento)>=18){
-            document.write("<br> La persona es mayor de edad.");
+            document.write("<h4> La persona es mayor de edad.</h4>");
         }else{
-            document.write("<br> La persona es menor de edad.");
+            document.write("<h4>La persona es menor de edad.</h4>");
         }
     } 
     
@@ -88,4 +88,5 @@ const persona1 = new Persona("Juan",28,21121218,"M",70,189,1994);
 persona1.mostrarGeneracion();
 persona1.esMayorDeEdad();
 persona1.mostrarDatos();
-generarDNI();
+
+generarDNI(); 
