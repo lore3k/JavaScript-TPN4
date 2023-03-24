@@ -89,4 +89,4 @@ persona1.mostrarGeneracion();
 persona1.esMayorDeEdad();
 persona1.mostrarDatos();
 
-generarDNI(); 
+persona1.generarDNI(); 
