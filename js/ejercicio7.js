@@ -22,3 +22,64 @@ huecosLibres(): indica cuántos contactos más podemos ingresar.
 Crea un menú con opciones por consola para probar todas estas funcionalidades.
 
 */
+
+class Contacto{
+    constructor(nombre,telefono){
+        this._nombre=nombre;
+        this._telefono = telefono;
+    }
+
+    
+    
+    eliminarContacto(){
+
+    }
+    agendaLlena(){
+        
+    }
+    huecosLibres(){
+        
+    }
+
+}
+
+class Agenda{
+    constructor(){
+        this.contactos=[];
+    }
+    
+    aniadirContacto(Contacto){
+        if (this.contactos.length < 10) {
+            this.contactos.push(Contacto);
+            document.write(`${Contacto} se agregó a la Agenda.`);
+          } else {
+            document.write(`La Agenda se encuentra llena.`);
+          }
+    }
+
+    existeContacto(Conctacto){
+        for (let i = 0; i < this.contactos.length; i++) {
+            if ((this.contactos[i].nombre === Contacto.nombre) || (this.contactos[i].telefono === Contacto.telefono)) {
+              document.write("El contacto ya existe");
+            }
+          }
+          document.write(`No se encontró el contacto ${Contacto.nombre}.`);
+        }
+
+        listarContactos(){
+            document.write('<ul>');
+            for (let i = 0; i < this.contactos.length; i++){
+                document.write(`<li>${this.contactos[i]}</li>`);
+            }
+            document.write('</ul>');           
+        }
+
+        buscarContacto(nombre){
+            for (let i = 0; i < this.contactos.length; i++) {
+                if (this.contactos[i].nombre === nombre) {
+                  document.write(this.contactos[i].telefono);
+                }
+              }
+              document.write(`No se encontró el contacto ${nombre}.`);
+            }
+}
