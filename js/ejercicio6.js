@@ -15,3 +15,21 @@ el siguiente formato:
 Crear al menos 2 objetos libros y utilizar el método mostrarLibro();
 Por último, indicar cuál de los 2 objetos “libros” tiene más páginas.
 */
+
+class Persona{
+    constructor(isbn,titulo,autor,numPaginas){
+        this.isbn=isbn;
+        this.titulo=titulo;
+        this.autor=autor;
+        this.numPaginas=numPaginas;
+    }
+
+    mostrarLibro(){
+        document.write(
+        "El libro "+this.titulo+
+        " con ISBN "+this.isbn+
+        " creado por el autor "+this.autor+
+        " tiene páginas "+this.numPaginas);
+    }
+    
+}
