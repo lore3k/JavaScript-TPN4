@@ -89,4 +89,11 @@ persona1.mostrarGeneracion();
 persona1.esMayorDeEdad();
 persona1.mostrarDatos();
 
+document.write("<br>DNI Aleatorio: ");
 persona1.generarDNI(); 
+
+
+
+
+
+
