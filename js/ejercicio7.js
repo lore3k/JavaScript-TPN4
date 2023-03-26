@@ -25,22 +25,14 @@ Crea un menú con opciones por consola para probar todas estas funcionalidades.
 
 class Contacto{
     constructor(nombre,telefono){
-        this._nombre=nombre;
-        this._telefono = telefono;
+        this.nombre=nombre;
+        this.telefono = telefono;
     }
-
     
-    
-    eliminarContacto(){
-
+    mostrarContacto(){
+      document.write("Nombre: "+this.nombre);
+      document.write("<br>Teléfono: "+this.telefono);
     }
-    agendaLlena(){
-        
-    }
-    huecosLibres(){
-        
-    }
-
 }
 
 class Agenda{
@@ -48,38 +40,70 @@ class Agenda{
         this.contactos=[];
     }
     
-    aniadirContacto(Contacto){
+    aniadirContacto(contacto){
         if (this.contactos.length < 10) {
-            this.contactos.push(Contacto);
-            document.write(`${Contacto} se agregó a la Agenda.`);
+            this.contactos.push(contacto);
+            document.write(`<p>${contacto.nombre} se agregó a la Agenda.</p>`);
           } else {
             document.write(`La Agenda se encuentra llena.`);
           }
     }
 
-    existeContacto(Conctacto){
+    existeContacto(contacto){
         for (let i = 0; i < this.contactos.length; i++) {
-            if ((this.contactos[i].nombre === Contacto.nombre) || (this.contactos[i].telefono === Contacto.telefono)) {
-              document.write("El contacto ya existe");
+            if ((this.contactos[i].nombre === contacto.nombre) || (this.contactos[i].telefono === contacto.telefono)) {
+              document.write("El contacto ya existe.");
+            }else{
+              document.write(`No se encontró el contacto ${contacto.nombre}.`);
             }
           }
-          document.write(`No se encontró el contacto ${Contacto.nombre}.`);
-        }
+    }
 
-        listarContactos(){
+    listarContactos(){
+      document.write("<h4>CONTACTOS:</h4>")
             document.write('<ul>');
-            for (let i = 0; i < this.contactos.length; i++){
-                document.write(`<li>${this.contactos[i]}</li>`);
+            for(let i = 0; i < this.contactos.length; i++){
+                document.write(`<li>${this.contactos[i].nombre}: ${this.contactos[i].telefono}</li>`);
             }
             document.write('</ul>');           
-        }
+    }
 
-        buscarContacto(nombre){
-            for (let i = 0; i < this.contactos.length; i++) {
-                if (this.contactos[i].nombre === nombre) {
-                  document.write(this.contactos[i].telefono);
-                }
-              }
-              document.write(`No se encontró el contacto ${nombre}.`);
-            }
+    buscarContacto(nombre){
+      for (let i = 0; i < this.contactos.length; i++) {
+        if (this.contactos[i].nombre === nombre) {
+          document.write("<p>Teléfono de "+nombre+": "+this.contactos[i].telefono+"</p>");
+        }else{
+          document.write(`No se encontró el contacto ${nombre}.`);
+        }
+      }
+    }
+
+    eliminarContacto(){
+
+    }
+        
+    agendaLlena(){
+      if(this.contactos.length==10){
+        document.write("La Agenda está llena.");
+      }else{
+        document.write("La Agenda todavía tiene espacios libres.");
+      }
+    }
+
+    huecosLibres(){
+      document.write("<p>Se pueden ingresar "+(10 - this.contactos.length)+" contactos más.</p>");
+    }
 }
+
+const contacto1 = new Contacto("Carlos",381565656);
+contacto1.mostrarContacto();
+
+
+const agenda = new Agenda();
+
+agenda.aniadirContacto(contacto1);
+agenda.listarContactos();
+agenda.existeContacto(contacto1);
+agenda.buscarContacto("Carlos");
+agenda.agendaLlena();
+agenda.huecosLibres();
