@@ -6,152 +6,168 @@ Agenda telefónica - Dificultad:  🟢🟡🔴
 Un contacto está definido por un nombre y un teléfono. Se considera que un contacto es igual a otro 
 cuando sus nombres son iguales.
 
-Una agenda de contactos está formada por un conjunto de contactos. Se podrá crear de dos formas, 
-indicando nosotros el tamaño o con un tamaño por defecto (10).
-
-Los métodos de la agenda serán los siguientes:
-
-aniadirContacto(Contacto): Añade un contacto a la agenda, sino la agenda no puede almacenar más contactos 
-indicar por pantalla.
-
-existeContacto(Conctacto): indica si el contacto pasado existe o no.
-
-listarContactos(): Lista toda la agenda
-
-buscarContacto(nombre): busca un contacto por su nombre y muestra su teléfono.
-
-eliminarContacto(Contacto c): elimina el contacto de la agenda, indica si se ha eliminado o no por pantalla
-
-agendaLlena(): indica si la agenda está llena.
-
-huecosLibres(): indica cuántos contactos más podemos ingresar.
-
-Crea un menú con opciones por consola para probar todas estas funcionalidades.
-
+Crea un menú con opciones que serán seleccionadas por el usuario usando un
+prompt, las salidas de las operaciones seleccionadas por el usuario se pueden
+mostrar en pantalla y por consola.
 */
 
 class Contacto{
-    constructor(nombre,telefono){
-        this.nombre=nombre;
-        this.telefono = telefono;
+  #nombre;
+  #telefono;
+  constructor(nombre,telefono){
+      this.#nombre= nombre;
+      this.#telefono = telefono;
+  }
+  
+  get nombre() {
+    return this.#nombre;
+  }
+
+  set nombre(nuevoNombre) {
+    if (nuevoNombre.length > 0) {
+      this.#nombre = nuevoNombre;
     }
-    
-    mostrarContacto(){
-      document.write("<p>Nombre: "+this.nombre);
-      document.write(". Teléfono: "+this.telefono+"</p>");
-    }
+  }
+  get telefono() {
+    return this.#telefono;
+  }
+
+  set telefono(nuevoTelefono) {
+    this.#telefono = nuevoTelefono;
+  }
 }
 
+//Una agenda de contactos está formada por un conjunto de contactos. 
+//Se podrá crear de dos formas, indicando nosotros el tamaño o con un tamaño por defecto (10).
 class Agenda{
-    constructor(){
-        this.contactos=[];
-    }
+  constructor(){
+    this.contactos=[];
+  }
     
-    aniadirContacto(contacto){
-      if (this.contactos.length < 10) {
-        this.contactos.push(contacto);
-        document.write(`<p>${contacto.nombre} se agregó a la Agenda.</p>`);
-      }else{
-        document.write(`La Agenda se encuentra llena.`);
+/* aniadirContacto(Contacto): Añade un contacto a la agenda, 
+  si la agenda no puede almacenar más contactos indicar por pantalla. */
+aniadirContacto(contacto){
+  if(!this.existeContacto(contacto.nombre)){
+    if(this.contactos.length < 10) {
+      this.contactos.push(contacto);
+      alert(`El contacto ${contacto.nombre} se agregó a la agenda.`);
+    }else{
+      alert(`La Agenda se encuentra llena.`);
       }
-    }
-
-    existeContacto(contacto){
-      for (let i = 0; i < this.contactos.length; i++) {
-        if ((this.contactos[i].nombre === contacto.nombre) || (this.contactos[i].telefono === contacto.telefono)) {
-          document.write("<p>El contacto ya existe.</p>");
-          break;
-        }else{
-          document.write(`<p>No se encontró el contacto ${contacto.nombre}.</p>`);
-          break;
-        }
-      }
-    }
-
-    listarContactos(){
-      document.write("<h4>CONTACTOS:</h4>")
-      document.write('<ul>');
-      for(let i = 0; i < this.contactos.length; i++){
-        document.write(`<li>${this.contactos[i].nombre}: ${this.contactos[i].telefono}</li>`);
-      }
-      document.write('</ul>');           
-    }
-
-    buscarContacto(nombre){
-      for (let i = 0; i < this.contactos.length; i++) {
-        if (this.contactos[i].nombre === nombre) {
-          document.write("<p>Teléfono de "+nombre+": "+this.contactos[i].telefono+"</p>");
-        }else{
-          document.write(`<p>No se encontró el contacto ${nombre}.</p>`);
-        }
-      }
-    }
-
-    eliminarContacto(contacto){
-      for (let i = 0; i < this.contactos.length; i++) {
-        if ((this.contactos[i].nombre === contacto.nombre) || (this.contactos[i].telefono === contacto.telefono)) {
-          contactos.splice(i,1);
-          document.write("<p>El contacto se eliminó.</p>");
-          break;
-        }else{
-          document.write(`<p>No se encontró el contacto ${contacto.nombre}.</p>`);
-          break;
-        }
-      }
-    }
-        
-    agendaLlena(){
-      if(this.contactos.length==10){
-        document.write("La Agenda está llena.");
-      }else{
-        document.write("La Agenda todavía tiene espacios libres.");
-      }
-    }
-
-    huecosLibres(){
-      document.write("<p>Se pueden ingresar "+(10 - this.contactos.length)+" contactos más.</p>");
-    }
+  }else{
+    alert(`El contacto ya existe.`);
+  }
+  
 }
 
-const contacto1 = new Contacto("Carlos",381565656);
-contacto1.mostrarContacto();
-const contacto2 = new Contacto("Carlossss",381565656);
-contacto2.mostrarContacto();
-const contacto3 = new Contacto("Carlos",381565656);
-contacto3.mostrarContacto();
-const contacto4 = new Contacto("Carlos",381565656);
-contacto4.mostrarContacto();
-const contacto5 = new Contacto("Carlos",381565656);
-contacto5.mostrarContacto();
-const contacto6 = new Contacto("José",381564596);
-contacto6.mostrarContacto();
-const contacto7 = new Contacto("Carlos",381565656);
-contacto7.mostrarContacto();
-const contacto8 = new Contacto("Carlos",381565656);
-contacto8.mostrarContacto();
-const contacto9 = new Contacto("Carlos",381565656);
-contacto9.mostrarContacto();
-const contacto10 = new Contacto("Carlos",381565656);
-contacto10.mostrarContacto();
+//existeContacto(Conctacto): indica si el contacto pasado existe o no.
+existeContacto(nombreBuscado){
+  for(let i=0; i<this.contactos.length; i++){
+    if(this.contactos[i].nombre==nombreBuscado){
+      return true;
+    }else{
+      return false;
+    }
+  } 
+}
 
+//listarContactos(): Lista toda la agenda
+listarContactos(){
+  document.write(`<h2>Agenda de contactos</h2>`);
+  document.write("<ul>");
+  this.contactos.map((contacto)=>
+    document.write(`<li>Contacto: ${contacto.nombre} - Tel: ${contacto.telefono}</li>`));
+    document.write("</ul>");          
+  }
 
-const agenda = new Agenda();
+//buscarContacto(nombre): busca un contacto por su nombre y muestra su teléfono.
+buscarContacto(nombreBuscado){
+  for(let i=0; i<this.contactos.length; i++){
+    if(this.contactos[i].nombre==nombreBuscado){
+      alert("Número de Teléfono: "+this.contactos[i].telefono);
+    }else{
+      alert('No existe el contacto');
+    }
+  } 
+}
 
-agenda.aniadirContacto(contacto1);
-agenda.aniadirContacto(contacto2);
-agenda.aniadirContacto(contacto3);
-agenda.aniadirContacto(contacto4);
-agenda.aniadirContacto(contacto5);
+//eliminarContacto(Contacto c): elimina el contacto de la agenda, indica si se ha eliminado o no por pantalla
+eliminarContacto(nombre){
+  let contactosFiltrados = this.contactos.filter((contacto)=> contacto.nombre !== nombre);
+  if(contactosFiltrados.length === this.contactos.length){
+    alert(`No encontramos el contacto ${nombre}`)
+  }else{
+    alert(`Contacto eliminado: ${nombre}`)
+    this.contactos = contactosFiltrados
+  }
+}
+        
+//agendaLlena(): indica si la agenda está llena.
+agendaLlena(){
+  if(this.contactos.length==10){
+    alert("La Agenda está llena.");
+    return true;
+  }else{
+    alert("La Agenda todavía tiene espacios libres.");
+    return false;
+  }
+}
 
-agenda.listarContactos();
+//huecosLibres(): indica cuántos contactos más podemos ingresar.
+  huecosLibres(){
+    alert("Se pueden ingresar "+(10 - this.contactos.length)+" contactos más.");
+  }
+}
 
-agenda.existeContacto(contacto1);
+let agendaNueva = new Agenda(10);
 
-agenda.existeContacto(contacto6);
+do {
+  const opcion = parseInt(
+    prompt(`Seleccione una opción:
+    1- Añadir contacto 
+    2- Ver si existe un contacto en la agenda 
+    3- Mostrar todos los contactos 
+    4- Buscar un contacto por su nombre 
+    5- Eliminar un contacto 
+    6- Ver si la agenda está llena 
+    7- Espacio disponible para almacenar contactos`)
+  );
+  console.log(opcion);
+if(!isNaN(opcion)){
+  switch (opcion) {
+    case 1:
+      const nombrePersona = prompt("Ingrese un nombre");
+      const telefonoPersona = prompt("Ingrese un teléfono");
+      const contactoNuevo = new Contacto(nombrePersona, telefonoPersona);
+      agendaNueva.aniadirContacto(contactoNuevo);
 
-agenda.buscarContacto("Carlos");
-agenda.agendaLlena();
-agenda.huecosLibres();
+      break;
+    case 2:
+      const nombre = prompt("Ingrese el nombre buscado");
+      agendaNueva.existeContacto(nombre)
+      ? alert('Existe el contacto')
+      : alert('No existe el contacto');
+      break;
+    case 3:
+      agendaNueva.listarContactos();
+      break;
+    case 4:
+      const nombreBuscado = prompt("Ingrese el nombre a buscar");
+      agendaNueva.buscarContacto(nombreBuscado);
+      break;
+    case 5:
+      const nombreParaBorrar = prompt("Ingrese el nombre para borrar");
+      agendaNueva.eliminarContacto(nombreParaBorrar)
+      break;
+    case 6:
+      agendaNueva.agendaLlena()
+      break;
+    case 7:
+      agendaNueva.huecosLibres();
+      break;
+    default:
+      alert("Opción invalida");
+  }
 
-agenda.eliminarContacto(contacto2);
-agenda.listarContactos;
+}
+} while (confirm("¿Desea realizar otra operación?"));
